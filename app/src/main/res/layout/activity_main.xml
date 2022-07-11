@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    tools:context=".MainActivity"
+    android:background="@color/primaryBackgroundColor">
     <TextView
         android:id="@+id/tv_calc"
         android:layout_width="wrap_content"
@@ -13,6 +13,7 @@
         android:text="Calc"
         android:textStyle="bold"
         android:textSize="28dp"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp"
@@ -23,6 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Theme"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/switch_change_theme"
         android:layout_marginTop="32dp"
@@ -45,17 +48,25 @@
     <TextView
         android:id="@+id/tv_expression"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/switch_change_theme"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/teal_700"
-        android:textAlignment="viewEnd"/>
+        android:textAlignment="viewEnd"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:paddingRight="16dp"
+        android:scrollHorizontally="true"/>
+
+
 
     <LinearLayout
+        android:id="@+id/main_layout"
+        android:background="@color/secondaryBackgroundColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_expression"
@@ -70,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:weightSum="4">
@@ -81,6 +92,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="7"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -89,6 +102,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -97,6 +112,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -104,7 +121,8 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="del"/>
+                android:text="del"
+                android:backgroundTint="@color/secondaryButton"/>
 
         </LinearLayout>
 
@@ -122,6 +140,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -130,6 +150,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -138,6 +160,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -145,7 +169,9 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"/>
+                android:text="+"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"/>
 
         </LinearLayout>
 
@@ -163,6 +189,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -171,6 +199,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -179,6 +209,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -186,7 +218,9 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-"/>
+                android:text="-"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"/>
 
         </LinearLayout>
 
@@ -204,6 +238,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="."
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -212,6 +248,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -220,6 +258,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="/"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -227,7 +267,9 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="x"/>
+                android:text="x"
+                android:textColor="@color/secondaryBackgroundColor"
+                android:backgroundTint="@color/primaryButton"/>
 
         </LinearLayout>
 
@@ -237,7 +279,7 @@
             android:orientation="horizontal"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="16dp"
             android:weightSum="2">
 
             <Button
@@ -246,6 +288,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="reset"
+                android:backgroundTint="@color/secondaryButton"
                 android:layout_marginEnd="16dp"/>
 
             <Button
@@ -253,7 +296,8 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="="/>
+                android:text="="
+                android:backgroundTint="@color/equalsButtonColor"/>
 
         </LinearLayout>
 

@@ -1,18 +1,32 @@
 package com.example.calculator_app;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 
+import android.content.res.ColorStateList;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.calculator_app.utils.Operation;
+import com.google.android.material.shape.CornerFamily;
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    LinearLayout mainLayout;
+    Switch sTheme;
     TextView tvExpression;
 
     Button btnDigit0;
@@ -56,12 +70,28 @@ public class MainActivity extends AppCompatActivity {
     int ct = 0;
     int lastDecimal = 1;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponents();
         setListners();
+        setStyle();
+//        tvExpression.setMovementMethod(new ScrollingMovementMethod());
+//        tvExpression.setHorizontallyScrolling(true);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void setStyle() {
+        ShapeAppearanceModel shapeAppearanceModel = new ShapeAppearanceModel()
+                .toBuilder()
+                .setAllCorners(CornerFamily.ROUNDED, 15)
+                .build();
+        MaterialShapeDrawable shapeDrawable = new MaterialShapeDrawable(shapeAppearanceModel);
+        shapeDrawable.setFillColor(ColorStateList.valueOf(getColor(R.color.secondaryBackgroundColor)));
+        mainLayout.setBackground(shapeDrawable);
+        tvExpression.setBackground(shapeDrawable);
     }
 
     private void setListners() {
@@ -86,6 +116,16 @@ public class MainActivity extends AppCompatActivity {
         btnMultiply.setOnClickListener(addOperation());
         btnDivide.setOnClickListener(addOperation());
         btnEqual.setOnClickListener(getResult());
+        sTheme.setOnCheckedChangeListener(changeTheme());
+    }
+
+    private CompoundButton.OnCheckedChangeListener changeTheme() {
+        return new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+            }
+        };
     }
 
     private void updateLists(double operationResult) {
@@ -429,7 +469,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        mainLayout = findViewById(R.id.main_layout);
         tvExpression = findViewById(R.id.tv_expression);
+        sTheme = findViewById(R.id.switch_change_theme);
 
         btnDigit0 = findViewById(R.id.btn_digit_0);
         btnDigit1 = findViewById(R.id.btn_digit_1);
@@ -452,4 +494,5 @@ public class MainActivity extends AppCompatActivity {
         btnReset = findViewById(R.id.btn_reset);
         btnEqual = findViewById(R.id.btn_equals);
     }
+
 }
