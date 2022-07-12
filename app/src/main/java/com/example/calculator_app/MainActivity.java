@@ -2,19 +2,16 @@ package com.example.calculator_app;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.calculator_app.utils.Operation;
 import com.google.android.material.shape.CornerFamily;
@@ -54,15 +51,15 @@ public class MainActivity extends AppCompatActivity {
     Button btnOperation;
     String elementToAdd = "";
     Operation op = new Operation();
-    StringBuilder sbCurrentExpression = new StringBuilder("");
-    StringBuilder sb = new StringBuilder("");
+    StringBuilder sbCurrentExpression = new StringBuilder();
+    StringBuilder sb = new StringBuilder();
     int elementsNotZero;
     boolean firstCharacterMinus;
     int numberOfOperations;
 
     ArrayList<String> operators = new ArrayList<>();
     ArrayList<Double> numbers = new ArrayList<>();
-    StringBuilder sbNumberToConvert = new StringBuilder("");
+    StringBuilder sbNumberToConvert = new StringBuilder();
     Double operationResult;
 
     String[] div;
@@ -203,15 +200,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else if (getDecimals(operationResult) == 0){
 
-                        sbCurrentExpression.append(String.valueOf(operationResult));
+                        sbCurrentExpression.append(operationResult);
                         sbCurrentExpression.deleteCharAt(sbCurrentExpression.length() - 1);
                         sbCurrentExpression.deleteCharAt(sbCurrentExpression.length() - 1);
                         tvExpression.setText(sbCurrentExpression);
                         isPeriodAdded = false;
                     }
                     else {
-
-                        sbCurrentExpression.append(String.valueOf(operationResult));
+                        sbCurrentExpression.append(operationResult);
                         isPeriodAdded = true;
                     }
 
@@ -301,11 +297,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (isOperator(sbCurrentExpression, sbCurrentExpression.length() - 1)){
                         sbCurrentExpression.deleteCharAt(sbCurrentExpression.length() - 1);
                         tvExpression.setText(sbCurrentExpression);
-                        if (periodAdded()){
-                            isPeriodAdded = true;
-                        } else {
-                            isPeriodAdded = false;
-                        }
+                        isPeriodAdded = periodAdded();
                     } else {
                         sbCurrentExpression.deleteCharAt(sbCurrentExpression.length() - 1);
                         tvExpression.setText(sbCurrentExpression);
@@ -369,10 +361,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isPriorityOperator(StringBuilder sbCurrentExpression, int index){
-        if (String.valueOf(sbCurrentExpression.charAt(index)).equals("x")
-                || String.valueOf(sbCurrentExpression.charAt(index)).equals("/")){
-            return true;
-        } return false;
+        return String.valueOf(sbCurrentExpression.charAt(index)).equals("x")
+                || String.valueOf(sbCurrentExpression.charAt(index)).equals("/");
     }
 
     private View.OnClickListener addPeriod() {
@@ -434,13 +424,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean isOperator(StringBuilder sb, int index){
-        if (String.valueOf(sb.charAt(index)).equals("-")
+        return String.valueOf(sb.charAt(index)).equals("-")
                 || String.valueOf(sb.charAt(index)).equals("+")
                 || String.valueOf(sb.charAt(index)).equals("x")
-                || String.valueOf(sb.charAt(index)).equals("/")){
-            return true;
-        }
-        else return false;
+                || String.valueOf(sb.charAt(index)).equals("/");
     }
 
     private boolean numberEqualZero() {
@@ -457,9 +444,7 @@ public class MainActivity extends AppCompatActivity {
             if (String.valueOf(sb.charAt(sb.length() - 1)).equals("0")){
                 sb.deleteCharAt(sb.length() - 1);
             } else if (isOperator(sb, sb.length() - 1)){
-                if (elementsNotZero > 0){
-                    return false;
-                } else return true;
+                return elementsNotZero <= 0;
             } else {
                 sb.deleteCharAt(sb.length() - 1);
                 elementsNotZero++;
